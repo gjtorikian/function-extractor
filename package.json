@@ -1,0 +1,20 @@
+{
+    "name": "function-extractor",
+    "version"         : "0.0.1",
+    "description": "Extracts all the functions from a Javascript file into an array of objects.",
+    "main"       : "./index.js",
+    "engines": {
+        "node": ">=0.6.0"
+    },
+    "maintainers": [{
+        "name": "Garen J. Torikian",
+        "email": "gjtorikian@gmail.com"
+    }],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/c9/function-extractor"
+    },
+    "dependencies"  : {
+                        "esprima":    ""
+                      }
+}
