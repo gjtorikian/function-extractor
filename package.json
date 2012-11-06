@@ -1,6 +1,6 @@
 {
     "name": "function-extractor",
-    "version"         : "0.0.1",
+    "version"         : "0.0.2",
     "description": "Extracts all the functions from a Javascript file into an array of objects.",
     "main"       : "./index.js",
     "engines": {

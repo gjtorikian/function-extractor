@@ -25,13 +25,15 @@
     var matched = false, list = [];
     traverse(tree, function(node, path) {
       var parent;
+
       if (node.type === 'FunctionDeclaration') {
         return list.push({
           name: node.id.name,
           params: node.params,
           range: node.range,
           blockStart: node.body.range[0],
-          end: node.body.range[1]
+          end: node.body.range[1],
+          loc: node.loc.start
         });
       } else if (node.type === 'FunctionExpression') {
         parent = path[0];
@@ -114,7 +116,8 @@
                 params: node.params,
                 range: node.range,
                 blockStart: node.body.range[0],
-                end: node.body.range[1]
+                end: node.body.range[1],
+                loc: node.loc.start
               });
             }
           }
@@ -124,7 +127,8 @@
             params: node.params,
             range: node.range,
             blockStart: node.body.range[0],
-            end: node.body.range[1]
+            end: node.body.range[1],
+            loc: node.loc.start
           });
         } else if (parent.type === 'CallExpression') {
           return list.push({
@@ -132,7 +136,8 @@
             params: node.params,
             range: node.range,
             blockStart: node.body.range[0],
-            end: node.body.range[1]
+            end: node.body.range[1],
+            loc: node.loc.start
           });
         } else if (typeof parent.length === 'number') {
           return list.push({
@@ -140,7 +145,8 @@
             params: node.params,
             range: node.range,
             blockStart: node.body.range[0],
-            end: node.body.range[1]
+            end: node.body.range[1],
+            loc: node.loc.start
           });
         } else if (typeof parent.key !== 'undefined') {
           if (parent.key.type === 'Identifier') {
@@ -150,7 +156,8 @@
                 params: node.params,
                 range: node.range,
                 blockStart: node.body.range[0],
-                end: node.body.range[1]
+                end: node.body.range[1],
+                loc: node.loc.start
               });
             }
           }
