@@ -1,8 +1,6 @@
 (function() {  
-  var util = require('util');
-  var esprima, getFunctions, traverse;
-
-  esprima = require('esprima');
+  var util = require('util'),
+      esprima = require('esprima'),
 
   traverse = function(object, visitor, master) {
     var parent;
@@ -19,7 +17,7 @@
         return traverse(child, visitor, path);
       }
     });
-  };
+  },
 
   getFunctions = function(tree, code) {
     var matched = false, list = [];
@@ -168,12 +166,12 @@
   };
 
   exports.parse = function(code) {
-    var functions, tree;
-    tree = esprima.parse(code, {
+    var tree = esprima.parse(code, {
       loc: true,
       range: true
-    });
-    functions = getFunctions(tree, code);
+    }),
+
+    functions = getFunctions(tree);
 
     functions = functions.filter(function(fn) {
       return fn.name !== '[Anonymous]';
@@ -182,10 +180,8 @@
     return functions;
   };
 
-  exports.interpret = function(code, tree) {
-    var functions;
-
-    functions = getFunctions(tree, code);
+  exports.interpret = function(tree) {
+    var functions = getFunctions(tree);
 
     functions = functions.filter(function(fn) {
       return fn.name !== '[Anonymous]';

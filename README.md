@@ -32,7 +32,7 @@ Otherwise, if you've already parsed the file, do this:
 ```javascript
 var functionExtractor = require("./javascript/jsd/function_extractor");
 
-var functions = functionExtractor.parse(source, ast);
+var functions = functionExtractor.parse(ast);
 ```
 
-where `source` is the text read from your Javascript file, and `ast` is the `Esprima.parse()` result. Note that you must pass the `range` and `loc` options to Esprima.
+where `ast` is the `Esprima.parse()` result. Note that you must pass the `range` and `loc` options to Esprima.
