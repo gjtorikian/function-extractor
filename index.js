@@ -1,7 +1,8 @@
 (function() {  
   var util = require('util'),
       esprima = require('esprima'),
-
+      storedFuncs = {},
+      
   traverse = function(object, visitor, master) {
     var parent;
     parent = master === 'undefined' ? [] : master;
@@ -106,17 +107,21 @@
               console.error(util.inspect(parent.left, null, 5));
             }
             else {
-              return list.push({
-                namespace: namespace,
-                name: memberName, 
-                isPrototype: isPrototype,
-                prototyping: prototyping,
-                params: node.params,
-                range: node.range,
-                blockStart: node.body.range[0],
-                end: node.body.range[1],
-                loc: node.loc.start
-              });
+              // hacky hack hack. something above is causing the same functions to be processed twice.
+              if (storedFuncs[memberName] === undefined) {
+                storedFuncs[memberName] = "matched";
+                return list.push({
+                  namespace: namespace,
+                  name: memberName, 
+                  isPrototype: isPrototype,
+                  prototyping: prototyping,
+                  params: node.params,
+                  range: node.range,
+                  blockStart: node.body.range[0],
+                  end: node.body.range[1],
+                  loc: node.loc.start
+                });
+              }
             }
           }
         } else if (parent.type === 'VariableDeclarator') {
@@ -162,6 +167,7 @@
         }
       }
     });
+    
     return list;
   };
 
@@ -186,7 +192,7 @@
     functions = functions.filter(function(fn) {
       return fn.name !== '[Anonymous]';
     });
-
+    
     return functions;
   };
 }).call(this);
