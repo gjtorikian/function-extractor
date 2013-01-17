@@ -20,7 +20,7 @@ npm install function-extractor
 You can use this module in two ways. If you don't already have an Esprima AST of your code, do this:
 
 ```javascript
-var functionExtractor = require("./javascript/jsd/function_extractor");
+var functionExtractor = require("function-extractor");
 
 var functions = functionExtractor.parse(source);
 ```
@@ -30,9 +30,9 @@ where `source` is the text read from your Javascript file.
 Otherwise, if you've already parsed the file, do this:
 
 ```javascript
-var functionExtractor = require("./javascript/jsd/function_extractor");
+var functionExtractor = require("function-extractor");
 
-var functions = functionExtractor.parse(ast);
+var functions = functionExtractor.interpret(ast);
 ```
 
 where `ast` is the `Esprima.parse()` result. Note that you must pass the `range` and `loc` options to Esprima.

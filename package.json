@@ -15,6 +15,6 @@
         "url": "https://github.com/c9/function-extractor"
     },
     "dependencies"  : {
-                        "esprima":    ""
-                      }
+        "esprima":    ""
+     }
 }
