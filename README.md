@@ -1,6 +1,3 @@
-function-extractor
-============
-
 Provides an array of objects listing the names and types of functions found in a Javascript file.
 
 Based on [fn-extractor](https://github.com/goatslacker/fn-extractor), except this one works with the latest Esprima, catches more corner cases, reports errors, and covers Coffeescript.

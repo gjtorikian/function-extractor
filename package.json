@@ -12,7 +12,7 @@
     }],
     "repository": {
         "type": "git",
-        "url": "https://github.com/c9/function-extractor"
+        "url": "https://github.com/gjtorikian/function-extractor"
     },
     "dependencies"  : {
         "esprima":    "",
