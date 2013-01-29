@@ -166,13 +166,18 @@
     return list;
   };
 
-  exports.parse = function(code) {
+  exports.parse = function(code, options) {
+    if (options && options.coffeescript) {
+      csr = require("coffee-script-redux");
+      code = csr.js(csr.compile(csr.parse(code)));
+    }
+
     var tree = esprima.parse(code, {
       loc: true,
       range: true
-    }),
+    });
 
-    functions = getFunctions(tree);
+    var functions = getFunctions(tree);
 
     functions = functions.filter(function(fn) {
       return fn.name !== '[Anonymous]';

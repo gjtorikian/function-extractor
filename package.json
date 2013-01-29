@@ -1,7 +1,7 @@
 {
     "name": "function-extractor",
-    "version"         : "0.0.4",
-    "description": "Extracts all the functions from a Javascript file into an array of objects.",
+    "version"         : "0.0.5",
+    "description": "Extracts all the functions from a Javascript or Coffeescript file into an array of objects.",
     "main"       : "./index.js",
     "engines": {
         "node": ">=0.6.0"
@@ -15,6 +15,7 @@
         "url": "https://github.com/c9/function-extractor"
     },
     "dependencies"  : {
-        "esprima":    ""
+        "esprima":    "",
+        "coffee-script-redux": ""
      }
 }

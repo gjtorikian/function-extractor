@@ -3,9 +3,9 @@ function-extractor
 
 Provides an array of objects listing the names and types of functions found in a Javascript file.
 
-Based on [fn-extractor](https://github.com/goatslacker/fn-extractor), except this one works with the latest Esprima, catches more corner cases, reports errors, and isn't in Coffeescript.
+Based on [fn-extractor](https://github.com/goatslacker/fn-extractor), except this one works with the latest Esprima, catches more corner cases, reports errors, and covers Coffeescript.
 
-Used by [Panino](https://github.com/c9/panino-docs) to report doc coverage.
+Used by [Panino](https://github.com/c9/panino-docs) and [Biscotto](https://github.com/gjtorikian/biscotto) to report doc coverage.
 
 # Installation
 
@@ -15,17 +15,18 @@ npm install function-extractor
 
 # Usage
 
-[Esprima](https://github.com/ariya/esprima) is required by this tool.
-
-You can use this module in two ways. If you don't already have an Esprima AST of your code, do this:
+You can use this module in two ways. If you don't already have an [Esprima](https://github.com/ariya/esprima) AST of your code, do this:
 
 ```javascript
+var fs = require("fs");
 var functionExtractor = require("function-extractor");
+
+var source = fs.readFileSync("./sample.js", "utf8")
 
 var functions = functionExtractor.parse(source);
 ```
 
-where `source` is the text read from your Javascript file.
+where `source` is the text read from your Javascript file. You can also pass `{coffeescript: true}` if your source file is a Coffeescript file.
 
 Otherwise, if you've already parsed the file, do this:
 
@@ -35,4 +36,4 @@ var functionExtractor = require("function-extractor");
 var functions = functionExtractor.interpret(ast);
 ```
 
-where `ast` is the `Esprima.parse()` result. Note that you must pass the `range` and `loc` options to Esprima.
+where `ast` is the `Esprima.parse()` result. Note that you **must** pass the `range` and `loc` options to Esprima.
